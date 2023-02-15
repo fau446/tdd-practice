@@ -11,10 +11,38 @@ const testFunctions = () => {
     return newStr;
   }
 
+  function caesarCipher(str, shift) {
+    if (shift < 0) return;
+    let encryptedMessage = "";
+    for (let i = 0; i < str.length; i++) {
+      const encryptedLetter = encrypter(str[i], shift);
+      encryptedMessage = encryptedMessage.concat(encryptedLetter);
+    }
+    return encryptedMessage;
+  }
+
+  function encrypter(char, shift) {
+    let asciiValue = char[0].toLowerCase().charCodeAt(0);
+    let newLetter = "";
+    if (!(asciiValue >= 97 && asciiValue <= 122)) {
+      return char;
+    }
+
+    if (asciiValue + shift > 122) {
+      const distance = 122 - asciiValue;
+      asciiValue = 96 + (shift - distance);
+    } else {
+      asciiValue += shift;
+    }
+
+    newLetter = String.fromCharCode(asciiValue);
+    return newLetter;
+  }
+
   return {
     capatalize,
     reverseString,
-    calculator,
+    caesarCipher,
   };
 };
 
