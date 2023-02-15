@@ -39,10 +39,47 @@ const testFunctions = () => {
     return newLetter;
   }
 
+  function analyzeArray(arr) {
+    if (arr.length === 0) return { average: 0, min: 0, max: 0, length: 0 };
+
+    const average = arrayAverage(arr);
+    const min = arrayMinimum(arr);
+    const max = arrayMaximum(arr);
+
+    return { average: average, min: min, max: max, length: arr.length };
+  }
+
+  function arrayAverage(arr) {
+    let total = 0;
+    for (let i = 0; i < arr.length; i++) {
+      total += arr[i];
+    }
+    return Math.round((total / arr.length) * 1e1) / 1e1;
+  }
+
+  function arrayMinimum(arr) {
+    let min = arr[0];
+    for (let i = 1; i < arr.length; i++) {
+      if (arr[i] < min) min = arr[i];
+    }
+
+    return min;
+  }
+
+  function arrayMaximum(arr) {
+    let max = arr[0];
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i] > max) max = arr[i];
+    }
+
+    return max;
+  }
+
   return {
     capatalize,
     reverseString,
     caesarCipher,
+    analyzeArray,
   };
 };
 
